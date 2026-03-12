@@ -1,7 +1,7 @@
 ## Interface: 11200
 ## Title: Magnify |cff808080by luskanek
-## Author: luskanek
-## Notes: World map zoom and enhancements.
+## Author: paokkerkir
+## Notes: World map zoom and enhancements. Better compatibility fixes.
 ## Version: GIT
 ## SavedVariablesPerCharacter: Magnify_Settings
 
