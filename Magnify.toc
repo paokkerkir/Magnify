@@ -2,7 +2,7 @@
 ## Title: Magnify |cff808080by luskanek
 ## Author: paokkerkir
 ## Notes: World map zoom and enhancements. Better compatibility fixes.
-## Version: GIT
+## Version: 3.0.1
 ## SavedVariablesPerCharacter: Magnify_Settings
 
 Frames.xml
