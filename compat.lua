@@ -23,14 +23,26 @@ local function HandleAddons()
 
 	-- ShaguTweaks
 	if IsAddOnLoaded('ShaguTweaks') then
-		if ShaguTweaks_config and ShaguTweaks_config["WorldMap Window"] == 1 then
-			if WorldMapFrameScrollFrame then
-				WorldMapFrameScrollFrame:SetPoint('TOP', WorldMapFrame, 0, -48)
+		if ShaguTweaks_config then
+            if ShaguTweaks_config["WorldMap Window"] == 1 then
+                if WorldMapFrameScrollFrame then
+                    WorldMapFrameScrollFrame:SetPoint('TOP', WorldMapFrame, 0, -48)
 
-				if WORLDMAP_WINDOWED and WORLDMAP_WINDOWED == 1 then
-					WorldMapFrameScrollFrame:SetPoint('TOP', WorldMapFrame, 2, -24)
-				end
-			end
+                    if WORLDMAP_WINDOWED and WORLDMAP_WINDOWED == 1 then
+                        WorldMapFrameScrollFrame:SetPoint('TOP', WorldMapFrame, 2, -24)
+                    end
+                end
+            end
+
+            if WorldMapButton.coords and WorldMapButton.coords.text then
+                WorldMapButton.coords.text:ClearAllPoints()
+                WorldMapButton.coords.text:SetPoint('BOTTOMLEFT', WorldMapPositioningGuide, 14, 10)
+                WorldMapButton.coords.text:SetParent(WorldMapFrame)
+
+                WorldMapButton.player.text:ClearAllPoints()
+                WorldMapButton.player.text:SetPoint('LEFT', WorldMapButton.coords.text, 'RIGHT', 8, 0)
+                WorldMapButton.player.text:SetParent(WorldMapFrame)
+            end
 		end
 	end
 
@@ -59,7 +71,20 @@ end
 
 local handler = CreateFrame('Frame')
 handler:RegisterEvent('PLAYER_ENTERING_WORLD')
-handler:SetScript('OnEvent', HandleAddons)
+handler:SetScript('OnEvent', function()
+    local _fun = WorldMapFrame:GetScript('OnShow')
+
+    WorldMapFrame.shown = false
+    WorldMapFrame:SetScript('OnShow', function()
+        if not this.shown then
+            this.shown = true
+
+            HandleAddons()
+        end
+
+        _fun()
+    end)
+end)
 
 local WorldMapFrame_OldMinimize = WorldMapFrame_Minimize
 function WorldMapFrame_Minimize()
