@@ -1,21 +1,27 @@
-# Magnify v3.0.3
+# Magnify v3.0.4
 
 Magnify is a legacy World of Warcraft 1.12 add-on that increases the available zoom levels on the world map. This fork includes updates for better compatibility with Shagutweaks and LevelRange.
 Includes coordinates on World map frame.
 
 - Repository: paokkerkir/Magnify
 - Language: Lua
-- Version: 3.0.3
-- Last updated: 2026-03-21
+- Version: 3.0.4
+- Last updated: 2026-03-27
 
 ## Overview
 
 Magnify extends the default world map zoom so that players can zoom in closer than the stock client allows. It targets Vanilla clients (WoW 1.12) and is intended for players who want a closer view of map details.
 
+## Updates
+- New arrow texture
+- Default zooming value to 4x
+- Player arrow inversely scaled with map zoom level
+
+  
 ## Compatibility
 
 - Tested with World of Warcraft 1.12 (Vanilla)
-- Updated for improved compatibility with:
+- Compatibility with:
   - Shagutweaks
   - LevelRange
 
