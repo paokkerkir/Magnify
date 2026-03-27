@@ -1,5 +1,5 @@
 MAGNIFY_MIN_ZOOM = 1.0
-MAGNIFY_MAX_ZOOM = 4.0
+MAGNIFY_MAX_ZOOM = 1.6
 MAGNIFY_ZOOM_STEP = 0.2
 MAGNIFY_PLAYER_FLASH_INTERVAL = 0.25
 MAGNIFY_PLAYER_FLASH_COUNT = 10
@@ -120,6 +120,13 @@ local function WorldMapButton_OnUpdate()
 		y = -y * this:GetHeight()
 
 		WorldMapPlayer:SetPoint('CENTER', this, 'TOPLEFT', x, y)
+
+		-- scale arrow inversely to map zoom so it doesn't grow when zoomed in
+		local mapScale = WorldMapDetailFrame:GetScale()
+		local baseSize = 24 * (Magnify_Settings['arrow_scale'] or 1)
+		local scaledSize = baseSize / mapScale
+		WorldMapPlayer.Icon:SetWidth(scaledSize)
+		WorldMapPlayer.Icon:SetHeight(scaledSize)
 
 		-- credit: https://wowwiki-archive.fandom.com/wiki/SetTexCoord_Transformations
 		local s = sqrt(2)
