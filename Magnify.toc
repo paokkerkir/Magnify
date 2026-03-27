@@ -1,8 +1,8 @@
 ## Interface: 11200
 ## Title: Magnify
-## Author: lookino
+## Author: lookino - edits by paokkerkir
 ## Notes: World map zoom and enhancements.
-## Version: 3.0.3
+## Version: 3.0.4
 ## SavedVariablesPerCharacter: Magnify_Settings
 
 Frames.xml
