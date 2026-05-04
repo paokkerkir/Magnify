@@ -106,15 +106,33 @@ end)
 
 -- LevelRange tooltip fix
 local function FixLevelRangeTooltip()
-  if IsAddOnLoaded("LevelRange-Turtle") and LevelRangeTooltip then
+  if IsAddOnLoaded("LevelRange") and LevelRangeTooltip then
     LevelRangeTooltip:ClearAllPoints()
-    LevelRangeTooltip:SetPoint("BOTTOMLEFT", WorldMapFrame, "BOTTOMLEFT", 10, 50)
+    LevelRangeTooltip:SetPoint("BOTTOMRIGHT", WorldMapFrame, "BOTTOMRIGHT", -10, 50)
     LevelRangeTooltip:SetFrameStrata("TOOLTIP")
 
     if not LevelRangeTooltip._magnifyOverride then
       LevelRangeTooltip._magnifyOverride = true
       local originalSetPoint = LevelRangeTooltip.SetPoint
       LevelRangeTooltip.SetPoint = function(self, anchor, parent, relAnchor, x, y)
+        originalSetPoint(self, "BOTTOMRIGHT", WorldMapFrame, "BOTTOMRIGHT", -10, 50)
+        self:SetFrameStrata("TOOLTIP")
+      end
+    end
+  end
+end
+
+-- FlightMap tooltip fix
+local function FixFlightMapTooltip()
+  if IsAddOnLoaded("FlightMap") and FlightMapTooltip then
+    FlightMapTooltip:ClearAllPoints()
+    FlightMapTooltip:SetPoint("BOTTOMLEFT", WorldMapFrame, "BOTTOMLEFT", 10, 50)
+    FlightMapTooltip:SetFrameStrata("TOOLTIP")
+
+    if not FlightMapTooltip._magnifyOverride then
+      FlightMapTooltip._magnifyOverride = true
+      local originalSetPoint = FlightMapTooltip.SetPoint
+      FlightMapTooltip.SetPoint = function(self, anchor, parent, relAnchor, x, y)
         originalSetPoint(self, "BOTTOMLEFT", WorldMapFrame, "BOTTOMLEFT", 10, 50)
         self:SetFrameStrata("TOOLTIP")
       end
@@ -195,6 +213,7 @@ local function HandleAddons()
   -- Apply coordinate and tooltip fixes
   ReplaceCoordinates()
   FixLevelRangeTooltip()
+  FixFlightMapTooltip()
 end
 
 -- Run layout handler on login
